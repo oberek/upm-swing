@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ import com._17od.upm.crypto.DESDecryptionService;
 import com._17od.upm.crypto.EncryptionService;
 import com._17od.upm.crypto.InvalidPasswordException;
 import com._17od.upm.util.Util;
+import com.mongodb.MongoClient;
 
 /**
  * This factory is used to load or create a PasswordDatabase. Different versions
@@ -85,7 +87,11 @@ public class PasswordDatabasePersistence {
     }
 
     public PasswordDatabase load(File databaseFile) throws InvalidPasswordException, ProblemReadingDatabaseFile, IOException {
-
+        try{
+            MongoClient mongoClient = new MongoClient("mongodb://admin:password@ds137882.mlab.com:37882/blueberry-muffins");
+        }catch(Exception e){
+            System.err.println(e);
+        }
         byte[] fullDatabase = readFile(databaseFile);
 
         // Check the database is a minimum length

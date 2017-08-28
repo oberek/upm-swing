@@ -37,6 +37,7 @@ public class AccountInformation extends FlatPackObject {
 
     public AccountInformation() {
         accountName = "";
+
         userId = "";
         password = "";
         url = "";

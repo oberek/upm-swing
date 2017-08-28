@@ -28,8 +28,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com._17od.upm.util.Translator;
-import com.csvreader.CsvReader;
-import com.csvreader.CsvWriter;
+//import com.csvreader.CsvReader;
+//import com.csvreader.CsvWriter;
 
 public class AccountsCSVMarshaller {
 
@@ -42,15 +42,15 @@ public class AccountsCSVMarshaller {
         try {
             FileWriter writer = new FileWriter(file);
     
-            CsvWriter csvWriter = new CsvWriter(writer, ',');
-            for (int i=0; i<accounts.size(); i++) {
-                csvWriter.writeRecord(
-                        getAccountAsStringArray(
-                                (AccountInformation) accounts.get(i)
-                        )
-                );
-            }
-            csvWriter.close();
+//            CsvWriter csvWriter = new CsvWriter(writer, ',');
+//            for (int i=0; i<accounts.size(); i++) {
+//                csvWriter.writeRecord(
+//                        getAccountAsStringArray(
+//                                (AccountInformation) accounts.get(i)
+//                        )
+//                );
+//            }
+//            csvWriter.close();
         } catch (IOException e) {
             throw new ExportException(e);
         }
@@ -59,28 +59,28 @@ public class AccountsCSVMarshaller {
 
     public ArrayList unmarshal(File file) throws ImportException {
         ArrayList accounts = new ArrayList();
-
-        try {
-            CsvReader csvReader = new CsvReader(new FileReader(file));
-            while (csvReader.readRecord()) {
-                if (csvReader.getColumnCount() != 5) {
-                    throw new ImportException(
-                            Translator.translate("notCSVFileError", 
-                                    new Object[] {file.getAbsoluteFile(), 
-                                    new Long(csvReader.getCurrentRecord() + 1)})); 
-                }
-                accounts.add(new AccountInformation(
-                        csvReader.get(0),
-                        csvReader.get(1),
-                        csvReader.get(2),
-                        csvReader.get(3),
-                        csvReader.get(4)));
-            }
-        } catch (FileNotFoundException e) {
-            throw new ImportException(e);
-        } catch (IOException e) {
-            throw new ImportException(e);
-        }
+//
+//        try {
+////            CsvReader csvReader = new CsvReader(new FileReader(file));
+////            while (csvReader.readRecord()) {
+////                if (csvReader.getColumnCount() != 5) {
+////                    throw new ImportException(
+////                            Translator.translate("notCSVFileError",
+////                                    new Object[] {file.getAbsoluteFile(),
+////                                    new Long(csvReader.getCurrentRecord() + 1)}));
+////                }
+////                accounts.add(new AccountInformation(
+////                        csvReader.get(0),
+////                        csvReader.get(1),
+////                        csvReader.get(2),
+////                        csvReader.get(3),
+////                        csvReader.get(4)));
+////            }
+//        } catch (FileNotFoundException e) {
+//            throw new ImportException(e);
+//        } catch (IOException e) {
+//            throw new ImportException(e);
+//        }
 
         return accounts;
     }
