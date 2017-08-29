@@ -84,6 +84,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -92,7 +94,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * This is the main application entry class
  */
 @SpringBootApplication
-public class MainWindow extends JFrame implements ActionListener  {
+public class MainWindow extends JFrame implements ActionListener, CommandLineRunner  {
 
 	private static final long serialVersionUID = 1L;
 	private static final String applicationName = "Universal Password Manager";
@@ -1222,6 +1224,12 @@ public class MainWindow extends JFrame implements ActionListener  {
 				dbActions.errorHandler(e);
 			}
 		}
+	}
+
+	@Override
+	public void run(String... arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
