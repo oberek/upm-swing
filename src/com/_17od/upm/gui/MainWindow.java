@@ -71,6 +71,8 @@ import javax.swing.event.ListSelectionListener;
 import org.apache.commons.validator.routines.UrlValidator;
 import com._17od.upm.crypto.InvalidPasswordException;
 import com._17od.upm.database.AccountInformation;
+import com._17od.upm.database.IPasswordDB;
+import com._17od.upm.database.LoginToken;
 import com._17od.upm.database.ProblemReadingDatabaseFile;
 import com._17od.upm.platformspecific.PlatformSpecificCode;
 import com._17od.upm.util.Preferences;
@@ -85,6 +87,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -94,7 +97,10 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * This is the main application entry class
  */
 @SpringBootApplication
-public class MainWindow extends JFrame implements ActionListener, CommandLineRunner  {
+public class MainWindow extends JFrame implements ActionListener  {
+	
+	@Autowired
+	private IPasswordDB repository;
 
 	private static final long serialVersionUID = 1L;
 	private static final String applicationName = "Universal Password Manager";
@@ -1226,10 +1232,33 @@ public class MainWindow extends JFrame implements ActionListener, CommandLineRun
 		}
 	}
 
-	@Override
-	public void run(String... arg0) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void run(String... arg0) throws Exception {
+//		repository.deleteAll();
+//
+//		// save a couple of customers
+//		repository.save(new LoginToken("Alice", "Smith"));
+//		repository.save(new LoginToken("Bob", "Smith"));
+//
+//		// fetch all customers
+//		System.out.println("Customers found with findAll():");
+//		System.out.println("-------------------------------");
+//		for (LoginToken customer : repository.findAll()) {
+//			System.out.println(customer);
+//		}
+//		System.out.println();
+//
+//		// fetch an individual customer
+//		System.out.println("Customer found with findByFirstName('Alice'):");
+//		System.out.println("--------------------------------");
+//		System.out.println(repository.findById("Alice"));
+//
+//		System.out.println("Customers found with findByLastName('Smith'):");
+//		System.out.println("--------------------------------");
+//		for (LoginToken customer : repository.findByUsername("Smith")) {
+//			System.out.println(customer);
+//		}
+//		
+//	}
 
 }

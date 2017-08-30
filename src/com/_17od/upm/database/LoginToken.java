@@ -4,9 +4,9 @@ import org.springframework.data.annotation.Id;
 
 public class LoginToken {
 	@Id
-	String id;
-	String username;
-	String password;
+	private String id;
+	private String username;
+	private String password;
 	
     public LoginToken() {}
 
@@ -20,5 +20,13 @@ public class LoginToken {
         return String.format(
                 "LoginToken[id=%s, firstName='%s', lastName='%s']",
                 id, username, password);
+    }
+    
+    public String getUsername() {
+    	return username;
+    }
+    
+    public String getPassword() {
+    	return password;
     }
 }
